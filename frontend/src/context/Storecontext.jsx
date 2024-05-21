@@ -26,11 +26,23 @@ const StoreContextProvider = ({children}) =>{
 
     }
 
-    useEffect(()=>{
-        console.log(cartitems)
+    const getTotalCartAmount = ()=>{
+        let totalAmount = 0;
+        for(const item in cartitems){
+            if(cartitems[item]>0){
 
-    },[cartitems])
+                let itemInfo = food_list.find((product)=> product._id=== item)
+            totalAmount += itemInfo.price * cartitems[item]
+        }
 
+            }
+
+            return totalAmount;
+            
+
+    }
+
+   
 
 
 
@@ -39,7 +51,8 @@ const StoreContextProvider = ({children}) =>{
         cartitems,
         setcartitems,
         addToCart,
-        removeFromCart
+        removeFromCart,
+        getTotalCartAmount
     
 
     }
